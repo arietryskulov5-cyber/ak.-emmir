@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Жемиштер жана Жашылчалар</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-sMl39m1J9uVYkLcWveHt_UR1sEyAxSlgTQ&s') no-repeat center/cover;
+    }
+    header { background: linear-gradient(90deg, #2f6632, #66bb6a); color: rgba(243, 243, 243, 0); padding: 25px 15px; text-align: center; }
+    nav { margin-top: 15px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    nav a { color: rgb(255, 255, 255); text-decoration: none; font-weight: bold; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; }
+    .cart-btn { background: #ff9800; }
+    .container { padding: 30px; }
+    h2 { color: #d1e6d2; text-align: center; }
+    .catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; margin-top: 20px; }
+    .item { background: rgb(255, 249, 249); border-radius: 18px; box-shadow: 0 6px 14px rgba(0,0,0,0.15); padding: 12px; text-align: center; transition: transform 0.2s; }
+    .item:hover { transform: translateY(-5px); }
+    .item img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; }
+    .item button { margin-top: 10px; padding: 6px 12px; border: none; background: #48b829; color: rgb(255, 255, 255); border-radius: 12px; cursor: pointer; }
+    #cart { background: rgb(255, 255, 255); border-radius: 16px; padding: 20px; max-width: 400px; margin: 20px auto; display: none; }
+    #cartItems p { display: flex; justify-content: space-between; margin: 5px 0; }
+    #cartItems button { background: red; border: none; color: white; border-radius: 6px; cursor: pointer; }
+    #orderBtn { margin-top: 10px; padding: 10px; width: 100%; background: #25D366; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; }
+    footer { background: #2e7d32; color: white; text-align: center; padding: 18px; }
+  </style>
+</head>
+<body>
+<div class="overlay">
+  <header>
+    <h1>АК эмир</h1>
+    <p>Жаңы жана пайдалуу азыктар күн сайын алып келебис</p>
+    <nav>
+      <a href="#home">Башкы бет</a>
+      <a href="#fruits">Жемиштер</a>
+      <a href="#vegetables">Жашылчалар</a>
+      <a href="#greens">Зелень</a>
+      <a href="#contacts">Байланыш</a>
+      <a class="cart-btn" onclick="toggleCart()">🛒 Корзина (<span id="cartCount">0</span>)</a>
+    </nav>
+  </header>
+
+  
+  <div id="cart">
+  <h3>🛒 Сиздин корзина:</h3>
+
+  <div id="cartItems"></div>
+
+  <hr>
+
+  <p><b>🚚 Кантип аласыз?</b></p>
+  <select id="deliveryType" style="width:100%;padding:8px;border-radius:10px;">
+    <option value="Доставка">🚚 Доставка</option>
+    <option value="Өзүм келип алам">🏃 Өзүм келип алам</option>
+  </select>
+
+  <p style="margin-top:10px;"><b>📝 Комментарий:</b></p>
+  <textarea id="comment"
+    placeholder="Мисалы: кечинде алып келгиле"
+    style="width:100%;padding:8px;border-radius:10px;"></textarea>
+
+  <button id="orderBtn" onclick="orderWhatsApp()"
+    style="margin-top:12px;">
+    📲 WhatsApp аркылуу заказ
+  </button>
+</div>
+
+  </div>
+
+  <div class="container" id="fruits">
+    <h2>Жемиштер</h2>
+    <div class="catalog">
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQRvoCoAOrPOY7XsPi94QxVdwpqnwgn3qpCw&s"><p>Алма</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhT7S5nNfO_uWMVk0IAs5YTzu6hHjJ0coLiA&s"><p>Банан</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://www.greeninfo.ru/img/work/article/a_22251_54511.jpg"><p>Апельсин</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://healthy-food-near-me.com/wp-content/uploads/2022/09/grape-variety-muscat-hamburg-description-photo-reviews-characteristics-1.webp"><p>Жүзүм</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcPaDwVlL1ox7UmXchgmBUevR4mbfhmtTVhQ&s"><p>Мандарин</p><button>Добавить+</button></div>
+    </div>
+  </div>
+
+  <div class="container" id="vegetables">
+    <h2>Жашылчалар</h2>
+    <div class="catalog">
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvNtAgwTrGLlpcY5TSFFG8RZxbq3WsUzZ8sw&s"><p>Помидор</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqA91xf0orHtg6AvJF1S8HDqLGLaDHMwCWoA&s"><p>Бадыран</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://data.vb.kg/kyr/image/big/2021-06-17_15-47-01_547432.jpg"><p>Сабиз</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://f-o-o-d.ru/upload/iblock/db9/bz4psushixkcblcv2ch26rzqc496q8c7/kapusta.jpg"><p>Капуста</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEALfW8msuXVQH_zaAWrSsbPGwq3jas9zwCQ&s"><p>Картошка</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhvqpVoVFcPXTwAIvKUigLGuFQPJMf7f0zGw&s"><p>шампонйон</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://sfera.fm/assets/media/articles/99200/orig/804e6e9a66cc5e1ed1c178728dfddb74375392d1.jpg"><p>вешинка</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2Pm9eo4y2E3Dshzn9WAopm7NDU9rHytMFpg&s"><p>Пекинский капуста</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRLRM0sOVjyMyW7sDJqys-Sgmvs6HZYT0-Pw&s"><p>репчетый лук</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCxLzPaasBTCL1Luv6cmubES98rflJEN3qnA&s"><p>Красный лук</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTt67OYKE_BtfcBbBqL-pqz4K8QIZlS-3Ew&s"><p>Белый лук</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2r_ONOZJroRhe4lVd_1_YeZaMSNtRqBw74Q&s"><p>чеснок</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyH98EUmJYi4QYNoaj22H6A_j4A02D6qm8_w&s"><p>лимон</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo-O-X7GMNnB6SN5ZLjvT-nMubc_j6jXmlZg&s"><p>лук парей</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRttES6k6KXOFop-tNQ7ZJUG8PwfLKMU68XPA&s"><p>Красной капуста</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEQBTy0cORqmX_jt4CoO8GzAzZaZVLoKltYg&s"><p>батат</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBPn2U77G-gECgSSos3eQiBrvcs_p92AWPg&s"><p>сары сабис</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJqRXJgKLHemoNAJUwu-ij7mvsYqUvGpDALA&s"><p>гребы эноки</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://www.edimdoma.ru/data/ingredients/0000/7971/7971-ed4_wide.jpg?1527608469"><p>белайа ретка</p><button>Добавить+</button></div>
+    </div>
+  </div>
+
+  <div class="container" id="greens">
+    <h2>Зелень</h2>
+    <div class="catalog">
+      <div class="item"><img src="https://cdn.ime.by/UserFiles/images/catalog/Goods/6320/01716320/norm/01716320.n_1.png?s=1000x1000"><p>Укроп</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://globus-online.kg/_next/image?url=https%3A%2F%2Fapi.globus.kg%2Fstorage%2F24847%2Fe0d68d2f-8f5c-46e7-a444-12aa6dc783fb-bc9362fc7ea44ab7579264006bc15f3e.jpg&w=3840&q=75"><p>Сендирей</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS78Ayyo3_vn1KHkiBc_315uInqtIX7QybwqA&s"><p>петрушка</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYiWVBXMN83wYVWRqr-t6qkm-yRu3Vb1nBKA&s"><p>стебил сендирей</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTQkU-G6-7vttoPS35O9imFhFUOyJuYPeAow&s"><p>кинза</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://favoritefood.net/wp-content/uploads/2023/09/%D0%B4%D0%B6%D1%83%D1%81%D0%B0%D0%B91-900x500.webp"><p>жусай</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://eda.rambler.ru/img/eda/c460x302/s1.eda.ru/StaticContent/Photos/120304025019/120328130909/p_O.jpg"><p>салатный лист</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://eda.rambler.ru/img/eda/c460x302/s1.eda.ru/StaticContent/Photos/120131082729/120328162908/p_O.jpg"><p>шавил</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuSbBl5MplA3kJBvMKQRBNARDnhwPLjHUmww&s"><p>зеленый лук</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi8egeh9suunHsSfK8HR5VUhJsUxnlGk0pdA&s"><p>айзберк</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://cdn.tveda.ru/thumbs/104/1045ec8e95870f5f8f0c173ea1e5176a/70c58409284c82782650b8cb3f6564a3.jpg"><p>перетц</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://i.pinimg.com/736x/eb/28/56/eb2856090ac312922020bd8454a64e2b.jpg"><p>полугоркий перец</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://www.fastit.ru/cayyene1.jpg"><p>аганок красный</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUf2DC2D4aeIEO8qu5DJSbd9i7ZnRAs6-KYg&s"><p>аганок зеленый</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://images.gastronom.ru/3JfIkXbRRz-_sMy_9B-XBAykUVQuywELzSZxVJ6vhAw/pr:product-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU0ZDlkNDIyLTU5ZDQtNGUzMi1iOTc4LTcyNzc0Njg1MzM4My5qcGc.webp"><p>редиска</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://images.gastronom.ru/0ys04zCkY4ai_D5XBi5I2IYi62-Q_nXqU6Mt_nvbkXU/pr:product-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzk4ODliZmY4LTI5NTAtNDQwYS1hZGQzLWFkZDE1YmU2MDE2Ny5qcGc.webp"><p>чери</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-6ZsC-cTP5KvrXjZJV2mhMMzA1sSzbG53hA&s"><p>размарин</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaavCQZR9kZU-Im-ceonVbvl3OfpPk8E6Feg&s"><p>рукала</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://shef48.ru/wp-content/uploads/2024/10/e2685ec54c51f2ae3415d99107d874cd.jpg"><p>мята</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://s1.eda.ru/StaticContent/Photos/120304025019/120328132152/p_O.jpg"><p>тмян</p><button>Добавить+</button></div>
+      <div class="item"><img src="https://kupithai.ru/image/catalog/product/3de/bobovaya_lapsha.jpg"><p>фунчоза</p><button>Добавить+</button></div>
+    </div>
+  </div>
+
+  <div class="container" id="contacts">
+    <h2>Байланыш</h2>
+    <p>📍
+      <a href="https://www.google.com/maps/search/?api=1&query=Московская+76+Бишкек" target="_blank">Московская улица, 76</a>
+    </p>
+    <p>📞Телефон: +996 501125134, 996503125134, 996706136464</p>
+    <p>📷 Instagram: <a href="https://www.instagram.com/ak_emmir/" target="_blank">@ak_emmir</a></p>
+    <p>Доставка есть</p>
+  </div>
+
+</div>
+
+<script>
+let cart = [];
+
+function toggleCart(){
+  const cartDiv = document.getElementById('cart');
+  cartDiv.style.display = cartDiv.style.display === 'none' ? 'block' : 'none';
+}
+
+function renderCart(){
+  const itemsDiv = document.getElementById('cartItems');
+  itemsDiv.innerHTML = '';
+  cart.forEach((item, index) => {
+    itemsDiv.innerHTML += `<p>${item} <button onclick="removeItem(${index})">❌</button></p>`;
+  });
+  document.getElementById('cartCount').innerText = cart.length;
+}
+
+function removeItem(index){
+  cart.splice(index, 1);
+  renderCart();
+}
+
+document.querySelectorAll('.item button').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    const name = e.target.parentElement.querySelector('p').innerText;
+    cart.push(name);
+    renderCart();
+  });
+});
+
+function orderWhatsApp(){
+  if(cart.length === 0){
+    alert('Сначала добавьте товары в корзину');
+    return;
+  }
+  const itemsText = cart.join('%0A');
+  const phone = '996503125134'; 
+  const url = `https://wa.me/${phone}?text=Здравствуйте! Мен заказ кылгым келе жатт :%0A${itemsText}`;
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
+
+
